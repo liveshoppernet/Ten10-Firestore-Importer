@@ -1,0 +1,15 @@
+{
+  "name": "ten10-firestore-importer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@google-cloud/storage": "^5.7.0"
+  },
+  "dependencies": {
+    "inquirer": "^7.3.3",
+    "mkdirp": "^1.0.4"
+  },
+  "bin": "cli.js"
+}
