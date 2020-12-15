@@ -8,6 +8,18 @@ const bucketName = 'ten10-firestore-export';
 
 module.exports = async () => {
 	try {
+		if (!fs.existsSync('./serviceAccount.json')) {
+			console.log('Failed to connect to Google Cloud Storage.');
+			console.log('You might need a serviceAccount.json in the root folder of your project.');
+			console.log('Copy it from here: https://drive.google.com/file/d/1yfQ3jWm0_ZIPM4Ps9oRhuAZGOA79MNgh/view?usp=sharing');
+
+			return;
+		}
+	} catch (err) {
+		console.error(err)
+	}
+
+	try {
 		const storage = new Storage({
 			projectId: 'ten10-2020',
 			keyFilename: './serviceAccount.json'
@@ -15,9 +27,6 @@ module.exports = async () => {
 
 		await storage.bucket(bucketName).getFiles({ delimiter: '/', autoPaginate: false }, listFolders);
 	} catch (err) {
-		console.log('Failed to connect to Google Cloud Storage. You might need a serviceAccount.json in the root folder of your project.');
-		console.log('Copy it from here: https://drive.google.com/file/d/1yfQ3jWm0_ZIPM4Ps9oRhuAZGOA79MNgh/view?usp=sharing');
-
 		console.error('ERROR:', err);
 	}
 }

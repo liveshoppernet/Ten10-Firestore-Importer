@@ -5,7 +5,7 @@
 serviceAccount.json
 
 # artifacts
-seed-data/
+seed-data
 
 # vscode
 .history/
